@@ -48,6 +48,12 @@ print ("Score: {}".format(result4) )
 review5 = "No positive"
 result5 = sentiment_analyzer_scores(review5)
 print ("Score: {}".format(result5) )
+review6 = "N/A"
+result6 = sentiment_analyzer_scores(review6)
+print ("Score: {}".format(result6) )
+review7 = "null"
+result7 = sentiment_analyzer_scores(review7)
+print ("Score: {}".format(result7) )
 
 
 # 2. Test to see if Numpy works:
