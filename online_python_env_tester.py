@@ -1,8 +1,9 @@
 #
-# 2020-02-08  
+# 2020-02-09  
 # by:  Dr. Michael Moran
 #  professor.moran@gmail.com, m.moran3@snhu.edu
 #
+
 """
 This is a Python test program originally written
 to test these online Python coding environments:
@@ -14,17 +15,18 @@ to test these online Python coding environments:
   https://www.onlinegdb.com/online_python_compiler
 4. Python Anywhere:
   https://www.pythonanywhere.com/login/
-The goal is to see if the selected online Python
-coding environments work with
-the following Python libraries:
+5. Infosec "data science" lab environment:
+  https://lab.infoseclearning.com
+The goal was to see if the selected online Python
+coding environments work with the following Python libraries:
   vaderSentiment, Numpy, Pandas,
-  matplotlib and seaborn
+  matplotlib, Seaborn, NLTK, 
+  and Scikit-learn.
 """
 
 # 1. Test to see if Vader works:
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyser = SentimentIntensityAnalyzer()
-
 def sentiment_analyzer_scores(sentence):
     score = analyser.polarity_scores(sentence)
     print("{:-<40} {}".format(sentence, str(score)))
@@ -37,10 +39,20 @@ print ("Score: {}".format(result1) )
 review2 = "The phone is super cool. :-)"
 result2 = sentiment_analyzer_scores(review2)
 print ("Score: {}".format(result2) )
+review3 = "No comment"
+result3 = sentiment_analyzer_scores(review3)
+print ("Score: {}".format(result3) )
+review4 = "No negative"
+result4 = sentiment_analyzer_scores(review4)
+print ("Score: {}".format(result4) )
+review5 = "No positive"
+result5 = sentiment_analyzer_scores(review5)
+print ("Score: {}".format(result5) )
 
 
 # 2. Test to see if Numpy works:
 import numpy as np
+print ('\nThe numpy version is {}'.format(np.__version__) )
 a = np.arange(15).reshape(3, 5)
 print(a)
 print( a.shape )
@@ -52,7 +64,10 @@ print(a)
 
 
 # 3. Now test Numpy + matplotlib:
+import matplotlib
+print ('\nThe matplotlib version is {}'.format(matplotlib.__version__) )
 from matplotlib import pyplot as plt 
+#print(dir(plt))
 x = np.arange(1,11) 
 y = 2 * x + 5 
 plt.title("Matplotlib demo") 
@@ -86,6 +101,7 @@ plt.clf() # clear out the figure/plot
 
 # 5. Test to see if Pandas works:
 import pandas as pd
+print ('\nThe pandas version is {}'.format(pd.__version__) )
 Index= ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
 Cols = ['A', 'B', 'C', 'D']
 df = pd.DataFrame(abs(np.random.randn(5, 4)), index=Index, columns=Cols)
@@ -93,7 +109,7 @@ print(df) # display Pandas dataframe contents
 
 
 # 6. Test to see if Pandas + matplotlib works:
-from matplotlib import pyplot as plt 
+#from matplotlib import pyplot as plt 
 plt.pcolor(df)
 # Create a heatmap:
 plt.yticks(np.arange(0.5, len(df.index), 1), df.index)
@@ -105,6 +121,7 @@ plt.savefig("3_pd_matplotlib_heatmap.png") # Needed for repl.it
 
 # 7. Test to see if Pandas + seaborn works:
 import seaborn as sb
+print ('\nThe seaborn version is {}'.format(sb.__version__) )
 heat_map = sb.heatmap(df)
 plt.show()
 plt.savefig("4_pd_seaborn_heatmap.png")
@@ -119,7 +136,25 @@ plt.clf() # clear out the figure/plot
 plt.xlabel("Values on X axis")
 plt.ylabel('Values on Y axis')
 plt.title("Pandas + Seaborn Example Heatmap")
-heat_map = sb.heatmap(df, annot=True, cmap="YlGnBu")
+heat_map = sb.heatmap(df, annot=True, cmap="YlGnBu_r")
 plt.show()
 plt.savefig("5_pd_seaborn_heatmap2.png")
 plt.clf() # clear out the figure/plot
+
+
+#9. Import NLTK library and stopwords:
+import nltk
+print('\nThe nltk version is {}.'.format(nltk.__version__))
+#nltk.download('stopwords')
+#from nltk.corpus import stopwords
+
+
+#10. Import Scikit learn library:
+import sklearn
+print('\nThe scikit-learn version is {}.'.format(sklearn.__version__))
+from sklearn.feature_extraction.text import TfidfVectorizer 
+vectorizer = TfidfVectorizer()
+#print(vectorizer)
+
+
+print("\nEnd of tests.")
