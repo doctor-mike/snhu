@@ -163,4 +163,9 @@ vectorizer = TfidfVectorizer()
 #print(vectorizer)
 
 
+#11. Import Wordcloud library:
+import wordcloud
+print('\nThe wordcloud version is {}.'.format(wordcloud.__version__))
+
+
 print("\nEnd of tests.")
